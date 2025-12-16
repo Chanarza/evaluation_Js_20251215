@@ -1,6 +1,4 @@
-/* style.css – interface simple et propre */
-
-/* Reset basique */
+/* reset simple */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,105 +7,160 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #f5f6fa;
+  color: #1f2937;
 }
 
-/* En-tête */
+/* header */
 header {
-  background-color: #2c3e50;
-  color: #ffffff;
-  padding: 15px;
+  background-color: #0f172a;
+  color: white;
   text-align: center;
+  padding: 18px;
 }
 
-/* Conteneur principal */
+/* conteneur principal */
 .container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 16px;
+
   display: flex;
   gap: 20px;
-  padding: 20px;
-  max-width: 1100px;
-  margin: auto;
+
+  align-items: flex-start; /* aligne boutique et panier en haut */
 }
 
-/* Section boutique */
+/* ===== BOUTIQUE ===== */
 #boutique {
-  flex: 2;
+  width: 700px;
+  background-color: white;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
+/* titre boutique */
 #boutique h2 {
-  margin-bottom: 30px;
   text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
-/* Grille produits */
+/* petite barre sous le titre */
+#boutique h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #e5e7eb;
+  margin: 10px auto 0;
+  border-radius: 999px;
+}
+
+/* grille produits */
 .grid-produits {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Carte produit (à utiliser en JS) */
+/* carte produit */
 .produit {
-  width: 180px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: center;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  gap: 8px;
 
-
-.produit h3 {
-  font-size: 16px;
-  margin-bottom: 5px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
 }
 
 .produit img {
   width: 150px;
   height: 150px;
-  border-radius: 8px;
   object-fit: cover;
-  display: block;
-  margin: 0 auto;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
 }
 
+.produit h3 {
+  font-size: 16px;
+  text-align: center;
+}
 
 .produit p {
-  margin-bottom: 8px;
+  color: #6b7280;
 }
 
+/* bouton ajouter */
 .produit button {
-  background-color: #3498db;
-  color: #ffffff;
+  width: 100%;
+  padding: 10px;
+  background-color: #2563eb;
+  color: white;
   border: none;
-  padding: 6px 10px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .produit button:hover {
-  background-color: #2980b9;
+  background-color: #1d4ed8;
 }
 
-/* Panier */
+/* ===== PANIER ===== */
 #panier-section {
-  flex: 1;
+  width: 350px;
   background-color: white;
-  border: 1px solid #ddd;
-  padding: 15px;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
+/* titre panier */
 #panier-section h2 {
-  margin-bottom: 10px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 14px;
+  position: relative;
 }
 
+#panier-section h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background-color: #e5e7eb;
+  margin: 8px auto 0;
+  border-radius: 999px;
+}
+
+/* lignes panier */
+#panier-liste > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+#panier-liste > div:last-child {
+  border-bottom: none;
+}
+
+/* bouton poubelle */
 #panier-liste button {
-  background: none;
-  border: none;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 6px;
   cursor: pointer;
-  padding: 4px;
 }
 
 #panier-liste button img {
@@ -115,3 +168,50 @@ header {
   height: 18px;
 }
 
+/* total & commande */
+.total-section,
+.commande-box {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+#email-client {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+#btn-commander {
+  width: 100%;
+  padding: 10px;
+  background-color: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#message-feedback {
+  margin-top: 8px;
+  color: #6b7280;
+  min-height: 18px;
+}
+
+/* responsive simple */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  #boutique,
+  #panier-section {
+    width: 100%;
+  }
+
+  .grid-produits {
+    grid-template-columns: 1fr;
+  }
+}
