@@ -5,13 +5,13 @@
 
 
 const produits = [
-    { id: 1, nom: "Thé Vert Bio", prix: 12.99, image: "https://placehold.co/150" },
-    { id: 2, nom: "Café Arabica", prix: 8.50, image: "https://placehold.co/150" },
-    { id: 3, nom: "Infusion Menthe", prix: 5.00, image: "https://placehold.co/150" },
-    { id: 4, nom: "Chocolat Chaud", prix: 15.00, image: "https://placehold.co/150" }
+    { id: 1, nom: "Thé Vert Bio", prix: 12.99, image: "Images/boisson-chaude-tropical-feuille-saine-vert.jpg"},
+    { id: 2, nom: "Café Arabica", prix: 8.50, image: "Images/les-grains-de-cafe-se-trouvent-a-cezve-sur-la-toile-de-jute.jpg"},
+    { id: 3, nom: "Infusion Menthe", prix: 5.00, image: "Images/nourriture-asiatique.jpg"},
+    { id: 4, nom: "Chocolat Chaud", prix: 15.00, image: "Images/decoration-de-noel-dans-le-style-minimaliste.jpg"}
 ];
-let panier = [];
 
+let panier = [];
 
 const produitsContainer = document.getElementById("produits-container");
 const panierListe = document.getElementById("panier-liste");
@@ -30,11 +30,20 @@ function renderProduits() {
     produitsContainer.innerHTML = "";
 
     for (let produit of produits) {
-        console.log(produit.nom);
-        
+        const productCard = document.createElement("div");
+        productCard.classList.add("produit");
+        produitsContainer.appendChild(productCard);
+        const img = document.createElement("img");
+        img.src = produit.image;
+        img.alt = produit.nom;
+        productCard.appendChild(img);
+        const price = document.createElement("p");
+        price.textContent = produit.prix + " €";
+        productCard.appendChild(price);
     }
 }
-console.log(renderProduits());
+renderProduits();
+
 
 
 
