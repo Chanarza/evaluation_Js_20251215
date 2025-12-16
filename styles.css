@@ -94,7 +94,7 @@ header {
 /* Panier */
 #panier-section {
   flex: 1;
-  background-color: #ffffff;
+  background-color: white;
   border: 1px solid #ddd;
   padding: 15px;
 }
@@ -102,3 +102,16 @@ header {
 #panier-section h2 {
   margin-bottom: 10px;
 }
+
+#panier-liste button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+#panier-liste button img {
+  width: 18px;
+  height: 18px;
+}
+
