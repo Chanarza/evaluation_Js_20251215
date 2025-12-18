@@ -1,4 +1,4 @@
-/* reset simple */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +11,7 @@ body {
   color: #1f2937;
 }
 
-/* header */
+
 header {
   background-color: #0f172a;
   color: white;
@@ -19,7 +19,7 @@ header {
   padding: 18px;
 }
 
-/* conteneur principal */
+
 .container {
   max-width: 1100px;
   margin: 30px auto;
@@ -28,10 +28,10 @@ header {
   display: flex;
   gap: 20px;
 
-  align-items: flex-start; /* aligne boutique et panier en haut */
+  align-items: flex-start; 
 }
 
-/* ===== BOUTIQUE ===== */
+
 #boutique {
   width: 700px;
   background-color: white;
@@ -40,15 +40,15 @@ header {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* titre boutique */
+
 #boutique h2 {
   text-align: center;
   font-size: 20px;
   margin-bottom: 20px;
-  position: relative;
+  
 }
 
-/* petite barre sous le titre */
+
 #boutique h2::after {
   content: "";
   display: block;
@@ -59,14 +59,14 @@ header {
   border-radius: 999px;
 }
 
-/* grille produits */
+
 .grid-produits {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
-/* carte produit */
+
 .produit {
   background-color: white;
   border: 1px solid #e5e7eb;
@@ -98,7 +98,7 @@ header {
   color: #6b7280;
 }
 
-/* bouton ajouter */
+
 .produit button {
   width: 100%;
   padding: 10px;
@@ -122,7 +122,7 @@ header {
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* titre panier */
+
 #panier-section h2 {
   text-align: center;
   font-size: 18px;
@@ -140,7 +140,7 @@ header {
   border-radius: 999px;
 }
 
-/* lignes panier */
+
 #panier-liste > div {
   display: flex;
   justify-content: space-between;
@@ -154,7 +154,7 @@ header {
   border-bottom: none;
 }
 
-/* bouton poubelle */
+
 #panier-liste button {
   background-color: #f3f4f6;
   border: 1px solid #e5e7eb;
@@ -168,7 +168,7 @@ header {
   height: 18px;
 }
 
-/* total & commande */
+
 .total-section,
 .commande-box {
   margin-top: 16px;

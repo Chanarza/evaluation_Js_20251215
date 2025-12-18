@@ -3,12 +3,12 @@
 /* Les variables se déclarent dans l'ordre du plus abstrait au plus concret */
 
 
-
+/*Travail perso*/
 const produits = [
-    { id: 1, nom: "Thé Vert Bio", prix: 5.99, image: "Images/boisson-chaude-tropical-feuille-saine-vert.jpg" },
-    { id: 2, nom: "Café Arabica", prix: 4.50, image: "Images/les-grains-de-cafe-se-trouvent-a-cezve-sur-la-toile-de-jute.jpg" },
-    { id: 3, nom: "Infusion Menthe", prix: 5.00, image: "Images/nourriture-asiatique.jpg" },
-    { id: 4, nom: "Chocolat Chaud", prix: 4.99, image: "Images/decoration-de-noel-dans-le-style-minimaliste.jpg" }
+    { id: 1, nom: "Thé Vert Bio", prix: 5.99, image: "images/boisson-chaude-tropical-feuille-saine-vert.jpg" },
+    { id: 2, nom: "Café Arabica", prix: 4.50, image: "images/les-grains-de-cafe-se-trouvent-a-cezve-sur-la-toile-de-jute.jpg" },
+    { id: 3, nom: "Infusion Menthe", prix: 5.00, image: "images/nourriture-asiatique.jpg" },
+    { id: 4, nom: "Chocolat Chaud", prix: 4.99, image: "images/decoration-de-noel-dans-le-style-minimaliste.jpg" }
 ];
 
 let panier = [];
@@ -52,13 +52,16 @@ function renderProduits() {
         })
     }
 }
+
+
 renderProduits();
+
+/*Fin Travail perso*/
 
 function ajouterAuPanier(produit) {
     // Cette fonction est appelée quand on clique sur "Ajouter"
     const produitExistant = panier.find(item => item.id === produit.id);
-    // On cherche dans le tableau panier s'il existe déjà un produit
-    // qui a le même id que le produit cliqué
+    //permet de vérifier si le produit est déjà dans le panier
     // Si trouvé → produitExistant contient l'objet
     // Sinon → produitExistant vaut undefined
 
@@ -66,38 +69,38 @@ function ajouterAuPanier(produit) {
         // Si le produit existe déjà dans le panier
 
         produitExistant.quantite++;
-        // On augmente simplement la quantité de ce produit
+        // augmente la quantité du produit
 
     } else {
-        // Si le produit n'existe PAS encore dans le panier
+        // Si le produit n'existe pas encore dans le panier
         panier.push({
             // On ajoute un nouvel objet dans le tableau panier
 
             id: produit.id,
-            // stock l'identifiant du produit
+            
 
             nom: produit.nom,
-            // stock le nom du produit
+            
 
             prix: produit.prix,
-            // stock le prix du produit
+
 
             quantite: 1
-            //la quantité est initialisée à 1
+            // passage très mal compris.
         });
     }
     renderPanier();
 }
 
 function renderPanier() {
-    // Affiche le contenu du panier dans la page
+    // Affiche le contenu du panier
 
 
     let totalGeneral = 0;
     //initialise le total du panier à zéro
 
     panierListe.innerHTML = "";
-    // vide pour éviter les doublons visuels
+    // évite les doublons
 
     if (panier.length === 0) {
         panierListe.textContent = "Votre pannier est vide.";
@@ -105,101 +108,105 @@ function renderPanier() {
         return;
     }
 
-
+    
 
     for (let item of panier) {
         const ligne = document.createElement("div");
-        // conteneur de ligne
+        
 
         const texte = document.createElement("span");
-        // texte de la ligne
+        
 
         const sousTotal = item.prix * item.quantite;
-        // calcul
+        /* .toFixed permet de fixer les prix à deux chiffres après virgule. ChatGpt */
+        texte.textContent = item.nom + " x" + item.quantite + " - " + sousTotal.toFixed(2) + " €";
 
-        texte.textContent = item.nom + " x" + item.quantite + " - " + sousTotal + " €";
-        // affichage
 
         const btnSupprimer = document.createElement("button");
-        // bouton pour CET item
-
+    
         const imgTrash = document.createElement("img");
-        // image poubelle
+        /*Fin Travail perso*/
 
         imgTrash.src = "images/trash.png";
-        // chemin (attention à la casse)
+        // note à moi même casse sensible**
 
         imgTrash.alt = "Supprimer";
-        // alt
+        
 
         btnSupprimer.appendChild(imgTrash);
-        // image dans le bouton
+        
+
+
 
         btnSupprimer.addEventListener("click", () => {
             panier = panier.filter(p => p.id !== item.id);
             renderPanier();
         });
-        // suppression + refresh
-
+        
+        //Travail perso
         ligne.appendChild(texte);
-        // on met le texte
+    
 
         ligne.appendChild(btnSupprimer);
-        // on met la poubelle
+        
 
         panierListe.appendChild(ligne);
-        // on affiche la ligne
+        
 
         totalGeneral = totalGeneral + sousTotal;
-        // total
+    
     }
 
-    montantTotal.textContent = totalGeneral;
+    montantTotal.textContent = totalGeneral.toFixed(2);
 }
 
+/*Partie reprise sur le tp des formulaires*/
 function emailValide(email) {
-    // Vérifie que c’est un texte non vide
-    if (email === "") return false;
+    // suppr les espaces avant et après
+    const emailValue = email.trim();
 
-    // Vérifie la présence de @
-    if (!email.includes("@")) return false;
+    // Si email vide = invalide
+    if (emailValue === "") return false;
 
-    // Vérifie la présence d’un point
-    if (!email.includes(".")) return false;
+    // Regex pour un email
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;/*regex fait par chatGpt*/
 
-    // Si tout est OK, on considère l’email valide (version simple)
-    return true;
+    // vrai si format valide, sinon faux.
+    return emailRegex.test(emailValue);
 }
+
+
+
 
 btnCommander.addEventListener("click", () => {
-    // On récupère le texte de l’input email et on enlève les espaces
+    // écupère le texte de l’input email et suppr les espaces
     const email = emailClient.value.trim();
 
-    // On efface l’ancien message
+    // efface l’ancien message
     messageFeedBack.textContent = "";
 
-    // 1) Panier vide ?
+    // Panier vide ?
     if (panier.length === 0) {
         messageFeedBack.textContent = "Votre panier est vide. Ajoutez au moins un produit.";
         return;
     }
 
-    // 2) Email valide ?
+    // Email valide ?
     if (!emailValide(email)) {
         messageFeedBack.textContent = "Email invalide. Exemple : jean@mail.com";
         return;
     }
 
-    // 3) Succès : commande validée
+    // commande validée
     messageFeedBack.textContent = "Merci de votre commande";
 
-    // On vide le panier
+    // vide le panier
     panier = [];
 
-    // On met à jour l’affichage panier + total
+    // met à jour l’affichage
     renderPanier();
 
-    // On vide le champ email
+    // vide le champ email
     emailClient.value = "";
 });
 
